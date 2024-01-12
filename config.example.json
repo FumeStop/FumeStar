@@ -2,6 +2,8 @@
 
     "bot_token"             : "bot_token",
 
+    "embed_color"           : 12345,
+
     "community_server_id"   : 1234567890,
 
     "db_name"               : "db_name",
