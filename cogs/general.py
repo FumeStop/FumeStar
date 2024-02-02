@@ -1,28 +1,28 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
 import math
-import json
 from datetime import datetime
 
 import discord
 from discord import app_commands
 from discord.ext import commands
 
-
-with open("config.json") as json_file:
-    data = json.load(json_file)
-    community_server_id = data["community_server_id"]
+if TYPE_CHECKING:
+    from bot import FumeStop
 
 
 class General(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, bot: FumeStop):
+        self.bot: FumeStop = bot
 
-    @app_commands.command(name="ping", description="Returns the API and bot latency")
-    @app_commands.guilds(community_server_id)
+    @app_commands.command(name="ping")
     async def _ping(self, ctx: discord.Interaction):
+        """Returns the API and bot latency."""
         # noinspection PyUnresolvedReferences
         await ctx.response.defer(thinking=True)
 
-        embed = discord.Embed(colour=self.bot.embed_colour)
+        embed = discord.Embed(colour=self.bot.embed_color)
         embed.description = "**Pong!**"
 
         ms = self.bot.latency * 1000
@@ -41,5 +41,5 @@ class General(commands.Cog):
         await ctx.edit_original_response(embed=embed)
 
 
-async def setup(bot):
+async def setup(bot: FumeStop):
     await bot.add_cog(General(bot))
