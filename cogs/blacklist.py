@@ -55,34 +55,51 @@ class Blacklist(
             )
 
         if user_id:
-            if await is_blacklisted_user(self.bot.pool, int(user_id)):
+            if not user_id.isdigit():
+                return await ctx.edit_original_response(
+                    content="Invalid user ID provided."
+                )
+
+            else:
+                user_id = int(user_id)
+
+            if await is_blacklisted_user(self.bot.pool, user_id):
                 return await ctx.edit_original_response(
                     content="User already blacklisted."
                 )
 
-            await add_blacklisted_user(self.bot.pool, int(user_id))
+            await add_blacklisted_user(self.bot.pool, user_id)
 
             return await ctx.edit_original_response(
                 content="User added to the blacklist."
             )
 
-        if guild_id:
-            if await is_blacklisted_guild(self.bot.pool, int(guild_id)):
+        elif guild_id:
+            if not guild_id.isdigit():
+                return await ctx.edit_original_response(
+                    content="Invalid guild ID provided."
+                )
+
+            guild_id = int(guild_id)
+
+            if await is_blacklisted_guild(self.bot.pool, guild_id):
                 return await ctx.edit_original_response(
                     content="Guild already blacklisted."
                 )
 
-            await add_blacklisted_guild(self.bot.pool, int(guild_id))
+            await add_blacklisted_guild(self.bot.pool, guild_id)
 
             return await ctx.edit_original_response(
                 content="Guild added to the blacklist."
             )
 
-        return await ctx.edit_original_response(
-            content="No user or guild ID provided."
-        )
+        else:
+            return await ctx.edit_original_response(
+                content="No user or guild ID provided."
+            )
 
     @app_commands.command(name="remove")
+    @app_commands.rename(guild_id="server_id")
     async def _blacklist_remove(
         self,
         ctx: discord.Interaction,
@@ -108,24 +125,39 @@ class Blacklist(
             )
 
         if user_id:
-            if not await is_blacklisted_user(self.bot.pool, int(user_id)):
+            if not user_id.isdigit():
+                return await ctx.edit_original_response(
+                    content="Invalid user ID provided."
+                )
+
+            else:
+                user_id = int(user_id)
+
+            if not await is_blacklisted_user(self.bot.pool, user_id):
                 return await ctx.edit_original_response(
                     content="User not blacklisted."
                 )
 
-            await remove_blacklisted_user(self.bot.pool, int(user_id))
+            await remove_blacklisted_user(self.bot.pool, user_id)
 
             return await ctx.edit_original_response(
                 content="User removed from the blacklist."
             )
 
         if guild_id:
-            if not await is_blacklisted_guild(self.bot.pool, int(guild_id)):
+            if not guild_id.isdigit():
+                return await ctx.edit_original_response(
+                    content="Invalid guild ID provided."
+                )
+
+            guild_id = int(guild_id)
+
+            if not await is_blacklisted_guild(self.bot.pool, guild_id):
                 return await ctx.edit_original_response(
                     content="Guild not blacklisted."
                 )
 
-            await remove_blacklisted_guild(self.bot.pool, int(guild_id))
+            await remove_blacklisted_guild(self.bot.pool, guild_id)
 
             return await ctx.edit_original_response(
                 content="Server removed from the blacklist."
