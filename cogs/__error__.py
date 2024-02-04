@@ -44,6 +44,7 @@ class Error(commands.Cog):
                     # noinspection PyUnresolvedReferences
                     await ctx.response.send_message(embed=embed, ephemeral=True)
 
+                embed.title = "Error Report"
                 embed.description = ""
 
                 embed.add_field(
