@@ -19,6 +19,5 @@ DB_PORT = 3306
 INITIAL_EXTENSIONS = [
     "cogs.__error__",
     "cogs.blacklist",
-    "cogs.general",
 ]
 ```
