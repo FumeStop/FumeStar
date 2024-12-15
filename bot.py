@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from typing import Any
 
 import logging
@@ -6,15 +7,14 @@ from datetime import datetime
 from itertools import cycle
 
 import aiohttp
-import aiomysql
-
 import discord
-from discord.ext import commands, tasks
+import aiomysql
+from discord.ext import tasks, commands
 
 import config
 
 
-class FumeStop(commands.AutoShardedBot):
+class FumeStar(commands.AutoShardedBot):
     user: discord.ClientUser
     bot_app_info: discord.AppInfo
     session: aiohttp.ClientSession
@@ -22,7 +22,7 @@ class FumeStop(commands.AutoShardedBot):
     log: logging.Logger
 
     def __init__(self):
-        description = "FumeStop Community Manager."
+        description = "Community management bot for the FumeStop ecosystem."
 
         intents = discord.Intents.all()
 

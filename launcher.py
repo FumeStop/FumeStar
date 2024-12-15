@@ -1,19 +1,19 @@
 from __future__ import annotations
 
 import sys
-import click
+import asyncio
 import logging
 import contextlib
 from datetime import datetime
 
-import asyncio
+import click
+import discord
 import pymysql
 import aiomysql
 
-import discord
+from bot import FumeStar
 
 import config
-from bot import FumeStop
 
 try:
     # noinspection PyUnresolvedReferences
@@ -86,7 +86,7 @@ async def run_bot():
         click.echo("Could not set up MySQL. Exiting.", file=sys.stderr)
         return log.exception("Could not set up MySQL. Exiting...")
 
-    async with FumeStop() as bot:
+    async with FumeStar() as bot:
         bot.log = log
         bot.pool = pool
         await bot.start()

@@ -1,22 +1,22 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
-import string
 import random
+import string
 import traceback
 
 import discord
 from discord import app_commands
 from discord.ext import commands
 
-
 if TYPE_CHECKING:
-    from bot import FumeStop
+    from bot import FumeStar
 
 
 class Error(commands.Cog):
-    def __init__(self, bot: FumeStop):
-        self.bot: FumeStop = bot
+    def __init__(self, bot: FumeStar):
+        self.bot: FumeStar = bot
 
     async def cog_load(self):
         await self.global_app_command_error_handler(bot=self.bot)
@@ -67,5 +67,5 @@ class Error(commands.Cog):
                 return await self.bot.webhook.send(embed=embed)
 
 
-async def setup(bot: FumeStop):
+async def setup(bot: FumeStar):
     await bot.add_cog(Error(bot))

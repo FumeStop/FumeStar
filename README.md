@@ -1,23 +1,11 @@
-`config.py`:
+# FumeStar
 
-```python
-TOKEN = "token"
+[![ci/gh-actions/ruff](https://github.com/FumeStop/FumeStar/actions/workflows/ruff.yml/badge.svg)](https://github.com/FumeStop/FumeStar/actions/workflows/ruff.yml)
 
-EMBED_COLOR = 0xE44C65
+> Community management bot for the FumeStop ecosystem.
 
-WEBHOOK_ID = 1234567890
-WEBHOOK_TOKEN = "webhook_token"
+## License
 
-COMMUNITY_GUILD_ID = 1234567890
+[GNU Affero General Public License v3.0](LICENSE)
 
-DB_NAME = "db_name"
-DB_USER = "db_user"
-DB_PASSWORD = "db_password"
-DB_HOST = "localhost"
-DB_PORT = 3306
-
-INITIAL_EXTENSIONS = [
-    "cogs.__error__",
-    "cogs.blacklist",
-]
-```
+Copyright &copy; 2023-2024 [Sayan "Sn1F3rt" Bhattacharyya](https://sn1f3rt.dev)
