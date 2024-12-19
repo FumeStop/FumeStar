@@ -7,8 +7,9 @@ from datetime import datetime
 from itertools import cycle
 
 import aiohttp
-import discord
 import aiomysql
+
+import discord
 from discord.ext import tasks, commands
 
 import config
